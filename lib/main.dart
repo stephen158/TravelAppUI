@@ -71,7 +71,6 @@ class _TravelAppUIState extends State<TravelAppUI> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Header Section
               Text(
                 'Explore the world! By',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -113,9 +112,7 @@ class _TravelAppUIState extends State<TravelAppUI> {
                   ),
                 ],
               ),
-              SizedBox(height: 24),
-
-              // Popular Locations
+              SizedBox(height: 3),
               Text(
                 'Popular Locations',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -130,14 +127,14 @@ class _TravelAppUIState extends State<TravelAppUI> {
                   }).toList(),
                 ),
               ),
-              SizedBox(height: 24),
+              SizedBox(height: 2),
               Text(
                 'Recommended',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
               SizedBox(height: 16),
               SizedBox(
-                height: screenHeight * 0.35,
+                height: screenHeight * 0.30,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
@@ -147,6 +144,7 @@ class _TravelAppUIState extends State<TravelAppUI> {
                   ],
                 ),
               ),
+              SizedBox(height: 2),
               Container(
                 margin: EdgeInsets.all(10),
                 width: 500,
@@ -155,7 +153,8 @@ class _TravelAppUIState extends State<TravelAppUI> {
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Image.asset('assets/images/ad.jpg',
-                      width: 500,
+                      fit: BoxFit.cover,
+                      //width: 500,
                       ),
                     ),
                    Positioned(
@@ -174,7 +173,7 @@ class _TravelAppUIState extends State<TravelAppUI> {
                   ],
                 ),
               ),
-              SizedBox(height: 1),
+              SizedBox(height: 35),
               Text(
                 'Most Viewed',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -205,6 +204,8 @@ class _TravelAppUIState extends State<TravelAppUI> {
   }
 
   Widget locationCard(String location, String imagePath) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.all(10),
       width: 160,
@@ -214,14 +215,14 @@ class _TravelAppUIState extends State<TravelAppUI> {
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
               imagePath,
-              width: 160,
-              height: 120,
+              width: screenWidth * 0.60,
+              height: screenHeight * 0.15,
               fit: BoxFit.cover,
             ),
           ),
           Positioned(
-            bottom: 30,
-            left: 50,
+            bottom: screenHeight * 0.04,
+            left: screenWidth * 0.13,
             child: Text(
               location,
               style: TextStyle(
@@ -237,6 +238,8 @@ class _TravelAppUIState extends State<TravelAppUI> {
   }
 
   Widget recommendedCard(String price, String title, String imagePath) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       width: 200,
       margin: EdgeInsets.all( 10),
@@ -247,8 +250,8 @@ class _TravelAppUIState extends State<TravelAppUI> {
             borderRadius: BorderRadius.circular(16),
             child: Image.asset(
               imagePath,
-              width: 250,
-              height: 120,
+              width: screenWidth * 0.5,
+              height: screenHeight * 0.15,
               fit: BoxFit.cover,
             ),
           ),
@@ -276,6 +279,8 @@ class _TravelAppUIState extends State<TravelAppUI> {
   }
 
   Widget viewedCard(String price, String title, String imagePath, bool isFavorite, int index) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
     return Container(
       margin: EdgeInsets.all(10),
       child: Column(
@@ -287,14 +292,14 @@ class _TravelAppUIState extends State<TravelAppUI> {
               borderRadius: BorderRadius.circular(16),
               child: Image.asset(
                 imagePath,
-                width: 500,
-                height: 200,
+                width: screenWidth * 0.9,
+                height: screenHeight * 0.3,
                 fit: BoxFit.cover,
               ),
             ),
               Positioned(
-                left: 290,
-                top: 20,
+                left: screenWidth * 0.72,
+                top: screenHeight * 0.02,
                 child:
               Stack(
                   children: [

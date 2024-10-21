@@ -16,17 +16,17 @@ class _TravelAppUIState extends State<TravelAppUI> {
   final TextEditingController _searchController = TextEditingController();
   bool _isSearching = false;
   List<Map<String, dynamic>> locations = [
-    {'name': 'India', 'image': 'assets/images/india.jpg'},
-    {'name': 'Moscow', 'image': 'assets/images/china.jpg'},
-    {'name': 'USA', 'image': 'assets/images/paris.jpg'},
+    {'name': 'India', 'image': 'https://www.tamilnadutourism.tn.gov.in/img/pages/mobile/kanyakumari-1655354775_70ffcca22ad83db7094c.webp'},
+    {'name': 'Paris', 'image': 'https://www.usnews.com/object/image/00000180-6260-d187-a5cb-fefd67170001/eiffel-tower-outro-stock.jpg?update-time=1650917926219&size=responsive640'},
+    {'name': 'China', 'image': 'https://www.jodogoairportassist.com/main/assets/images/blog/main-image/top-10-tourist-places-to-visit-in-china.webp'},
   ];
 
   List<Map<String, dynamic>> filteredLocations = [];
 
   List<Map<String, dynamic>> mostViewed = [
-    {'price': '\$90 / Night', 'title': 'Carinthia Lake see Breakfast', 'image': 'assets/images/house4.jpg', 'isFavorite': false},
-    {'price': '\$300 / Night', 'title': 'Carinthia Lake see Breakfast', 'image': 'assets/images/house5.jpg', 'isFavorite': false},
-    {'price': '\$240 / Night', 'title': 'Carinthia Lake see Breakfast', 'image': 'assets/images/house3.jpg', 'isFavorite': false},
+    {'price': '\$90 / Night', 'title': 'Carinthia Lake see Breakfast', 'image': 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGJlYXV0aWZ1bCUyMGhvdXNlfGVufDB8fDB8fHww', 'isFavorite': false},
+    {'price': '\$300 / Night', 'title': 'Carinthia Lake see Breakfast', 'image': 'https://media.istockphoto.com/id/1255835530/pl/zdj%C4%99cie/nowoczesna-niestandardowa-strona-zewn%C4%99trzna-domu-podmiejskiego.jpg?s=612x612&w=0&k=20&c=TwkvEhZv_lYbd_xVvJcqXDy7ftXe5S9e4nvqyhLA0XQ=', 'isFavorite': false},
+    {'price': '\$240 / Night', 'title': 'Carinthia Lake see Breakfast', 'image': 'https://i.pinimg.com/564x/fe/29/8a/fe298a70a49d93f50c62ae40c5ecce3a.jpg', 'isFavorite': false},
   ];
 
   @override
@@ -37,26 +37,21 @@ class _TravelAppUIState extends State<TravelAppUI> {
 
   void _filterLocations(String query) {
     if (query.isEmpty) {
-      setState(() {
         _isSearching = false;
         filteredLocations = locations;
-      });
+
     } else {
-      setState(() {
         _isSearching = true;
         filteredLocations = locations
             .where((location) => location['name']
             .toLowerCase()
             .contains(query.toLowerCase()))
             .toList();
-      });
     }
   }
 
   void _toggleFavorite(int index) {
-    setState(() {
       mostViewed[index]['isFavorite'] = !mostViewed[index]['isFavorite'];
-    });
   }
 
   @override
@@ -119,7 +114,7 @@ class _TravelAppUIState extends State<TravelAppUI> {
               ),
               SizedBox(height: 16),
               SizedBox(
-                height: screenHeight * 0.2,
+                height: screenHeight * 0.25,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: filteredLocations.map((location) {
@@ -138,9 +133,9 @@ class _TravelAppUIState extends State<TravelAppUI> {
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   children: [
-                    recommendedCard('\$120 / Night', 'Carinthia Lake see Breakfast...', 'assets/images/house1.jpg'),
-                    recommendedCard('\$400 / Night', 'Carinthia Lake see Breakfast...', 'assets/images/house2.jpg'),
-                    recommendedCard('\$240 / Night', 'Carinthia Lake see Breakfast...', 'assets/images/house3.jpg'),
+                    recommendedCard('\$120 / Night', 'Carinthia Lake see Breakfast...', 'https://media.istockphoto.com/id/1026205392/photo/beautiful-luxury-home-exterior-at-twilight.jpg?s=612x612&w=0&k=20&c=HOCqYY0noIVxnp5uQf1MJJEVpsH_d4WtVQ6-OwVoeDo='),
+                    recommendedCard('\$400 / Night', 'Carinthia Lake see Breakfast...', 'https://img.freepik.com/free-photo/photorealistic-house-with-wooden-architecture-timber-structure_23-2151302742.jpg?semt=ais_hybrid'),
+                    recommendedCard('\$240 / Night', 'Carinthia Lake see Breakfast...', 'https://media.istockphoto.com/id/1368330586/photo/front-porch-and-entrance-to-new-home.jpg?s=612x612&w=0&k=20&c=h13209WqKTjXDnqNbcnQMMJo6evzmvzNeQlClRdL-jk='),
                   ],
                 ),
               ),
@@ -152,24 +147,33 @@ class _TravelAppUIState extends State<TravelAppUI> {
                   children: [
                     ClipRRect(
                       borderRadius: BorderRadius.circular(16),
-                      child: Image.asset('assets/images/ad.jpg',
+                      child: Image.network('https://media.istockphoto.com/id/1030155158/photo/closeup-image-of-a-hand-holding-a-blue-cup-of-hot-coffee-with-smoke-on-wooden-table-in-cafe.jpg?s=612x612&w=0&k=20&c=Hpmm7nKU-TDQrsXbNcXTp8XU5-6LLsGy3bSjwooX1nQ=',
                       fit: BoxFit.cover,
                       //width: 500,
                       ),
                     ),
                    Positioned(
-                     left: 170,
+                     right: 170,
                      top: 50,
                      child: Text('Hosting fee for ',style: TextStyle(color: Colors.white,fontSize: 25),),),
                     Positioned(
-                      left: 180,
+                      right: 190,
                       top: 80,
                       child: Text('as low as 1%',style: TextStyle(color: Colors.white,fontSize: 25),),),
                     SizedBox(height: 5,),
                     Positioned(
-                      left: 180,
-                      top: 140,
-                      child: Text('Hosting fee for ',style: TextStyle(color: Colors.white,fontSize: 18,backgroundColor: Colors.red),),),
+                      right: 210,
+                      top: 130,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(18),
+                        child: Container(
+                          color: Colors.red,
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text('Become a Host ',
+                                style: TextStyle(color: Colors.white,fontSize: 15,),),
+                            )),
+                      ),),
                   ],
                 ),
               ),
@@ -213,22 +217,22 @@ class _TravelAppUIState extends State<TravelAppUI> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
+            child: Image.network(
               imagePath,
-              width: screenWidth * 0.60,
-              height: screenHeight * 0.15,
+              width: screenWidth * 0.4,
+              height: screenHeight * 0.3,
               fit: BoxFit.cover,
             ),
           ),
           Positioned(
-            bottom: screenHeight * 0.04,
+            bottom: screenHeight * 0.02,
             left: screenWidth * 0.13,
             child: Text(
               location,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 18,
               ),
             ),
           ),
@@ -248,7 +252,7 @@ class _TravelAppUIState extends State<TravelAppUI> {
         children: [
           ClipRRect(
             borderRadius: BorderRadius.circular(16),
-            child: Image.asset(
+            child: Image.network(
               imagePath,
               width: screenWidth * 0.5,
               height: screenHeight * 0.15,
@@ -290,7 +294,7 @@ class _TravelAppUIState extends State<TravelAppUI> {
             children: [
               ClipRRect(
               borderRadius: BorderRadius.circular(16),
-              child: Image.asset(
+              child: Image.network(
                 imagePath,
                 width: screenWidth * 0.9,
                 height: screenHeight * 0.3,
